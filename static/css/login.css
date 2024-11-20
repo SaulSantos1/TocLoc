@@ -1,0 +1,36 @@
+body {
+    background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+.login-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6a11cb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.login-logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+.footer-icons img {
+    width: 24px;
+    margin: 0 5px;
+}
+.footer-icons {
+    margin-top: 1rem;
+}

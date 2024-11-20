@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizar Mapa</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <style>
+    #map { height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <input style="display: none;" type="text" id="latitude" value="{{latitude}}">
+  <input style="display: none;" type="text" id="longitude" value="{{longitude}}">
+  <input style="display: none;" type="text" id="nome" value="{{nome}}">
+
+  <script>
+    // Verificar se as variáveis latitude e longitude são válidas
+    let latitudeStr = document.getElementById('latitude').value;
+    let longitudeStr = document.getElementById('longitude').value;
+    const nome = document.getElementById('nome').value;
+
+    // Substituindo vírgulas por pontos, se necessário
+    latitudeStr = latitudeStr.replace(',', '.');
+    longitudeStr = longitudeStr.replace(',', '.');
+
+    const latitude = parseFloat(latitudeStr);
+    const longitude = parseFloat(longitudeStr);
+
+    console.log(latitude, longitude);
+
+    if (!isNaN(latitude) && !isNaN(longitude)) {
+      // Configurar o mapa
+      const map = L.map('map').setView([latitude, longitude], 13);
+
+      // Adicionar camada de mapa
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Adicionar marcador
+      L.marker([latitude, longitude]).addTo(map)
+        .bindPopup(nome)
+        .openPopup();
+    } else {
+      alert('Coordenadas inválidas!');
+    }
+  </script>
+</body>
+</html>

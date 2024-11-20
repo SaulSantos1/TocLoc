@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container my-4">
+    <h1 class="mb-4 text-center text-success">
+      {% if form.instance.id %}Editar Disponibilidade{% else %}Criar Nova Disponibilidade{% endif %}
+    </h1>
+
+    <form method="POST" class="bg-light p-4 rounded shadow-sm">
+      {% csrf_token %}
+      
+          {{ form.as_p }}
+          
+          <button type="submit" class="btn btn-success btn-lg w-100">
+            {% if form.instance.id %}Atualizar Disponibilidade{% else %}Criar Disponibilidade{% endif %}
+          </button>
+    </form>
+
+    <div class="mt-4">
+      <a href="{% url 'listar_disponibilidades' %}" class="btn btn-outline-secondary btn-lg">
+        <i class="bi bi-arrow-left-circle"></i> Voltar para a lista
+      </a>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.user_login, name='login'),
+    path('cadastro/', views.user_cadastro, name='cadastro'),
+    path('logout/', views.logout_view, name='logout'),
+    path('home/', views.home, name='home'),  # URL para a página inicial do usuário
+]

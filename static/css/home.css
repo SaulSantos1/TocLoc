@@ -1,0 +1,12 @@
+.card-sports{
+    background: rgb(74,222,128);
+}
+
+.card-sports:hover{
+    background: rgb(68, 204, 118);
+    cursor: pointer;
+}
+
+.card-labels {
+    color: white !important;
+}

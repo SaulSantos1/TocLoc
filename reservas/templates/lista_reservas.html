@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container my-4">
+    <h1 class="mb-4 text-center text-success">Lista de Reservas</h1>
+
+    <div class="d-flex justify-content-between mb-3">
+      <a href="{% url 'criar_reserva' %}" class="btn btn-lg card-sports card-labels">
+        <i class="bi bi-calendar-plus"></i> Nova Reserva
+      </a>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="table-success">
+          <tr>
+            <th>Local</th>
+            <th>Usuário</th>
+            <th>Data da Reserva</th>
+            <th>Horario Inicio</th>
+            <th>Horario Fim</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for reserva in reservas %}
+            <tr>
+              <td>{{ reserva.local.nome }}</td>
+              <td>{{ reserva.usuario }}</td>
+              <td>{{ reserva.data }}</td>
+              <td>{{ reserva.horario_inicio }}</td>
+              <td>{{ reserva.horario_fim }}</td>
+              <td class="d-flex justify-content-around">
+                <!-- Botão de Editar -->
+                <a href="{% url 'editar_reserva' reserva.id %}" class="btn btn-warning btn-sm">
+                  <i class="bi bi-pencil"></i> Editar
+                </a>
+
+                <button class="btn btn-info btn-sm visualizar-mapa" 
+                  data-latitude="{{ reserva.local.latitude }}" 
+                  data-longitude="{{ reserva.local.longitude }}" 
+                  data-nome="{{ reserva.local.nome }}">
+                  <i class="bi bi-geo-alt"></i> Mapa
+                </button>
+
+                <!-- Botão de Excluir -->
+                <a href="{% url 'excluir_reserva' reserva.id %}" class="btn btn-danger btn-sm" 
+                   onclick="return confirm('Tem certeza que deseja excluir?')">
+                  <i class="bi bi-trash"></i> Excluir
+                </a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="6" class="text-center">Nenhuma reserva encontrada.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+    const visualizarButtons = document.querySelectorAll('.visualizar-mapa');
+      visualizarButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const latitude = this.getAttribute('data-latitude');
+          const longitude = this.getAttribute('data-longitude');
+          const nome = encodeURIComponent(this.getAttribute('data-nome')); // Codificar o nome para uso seguro na URL
+
+          console.log(latitude)
+          console.log(longitude)
+          console.log(nome)
+
+          // Redirecionar para a página do mapa com parâmetros
+          window.location.href = `/local/mapa?latitude=${latitude}&longitude=${longitude}&nome=${nome}`;
+        });
+      });
+
+</script>
+
+{% endblock %}

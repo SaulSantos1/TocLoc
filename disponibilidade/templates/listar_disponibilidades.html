@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container my-4">
+    <h1 class="mb-4 text-center text-success">Lista de Disponibilidades</h1>
+
+    <div class="d-flex justify-content-between mb-3">
+      <a href="{% url 'criar_disponibilidade' %}" class="btn btn-lg card-sports card-labels">
+        <i class="bi bi-plus-circle"></i> Criar Nova Disponibilidade
+      </a>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover">
+        <thead class="table-success">
+          <tr>
+            <th>Local</th>
+            <th>Data</th>
+            <th>Horário Início</th>
+            <th>Horário Fim</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for disponibilidade in disponibilidades %}
+            <tr>
+              <td>{{ disponibilidade.local.nome }}</td>
+              <td>{{ disponibilidade.data }}</td>
+              <td>{{ disponibilidade.horario_inicio }}</td>
+              <td>{{ disponibilidade.horario_fim }}</td>
+              <td class="d-flex justify-content-around">
+                <!-- Botão Editar -->
+                <a href="{% url 'criar_editar_disponibilidade' disponibilidade.id %}" class="btn btn-warning btn-sm">
+                  <i class="bi bi-pencil"></i> Editar
+                </a>
+                <!-- Botão Excluir -->
+                <a href="{% url 'excluir_disponibilidade' disponibilidade.id %}" class="btn btn-danger btn-sm" 
+                   onclick="return confirm('Tem certeza que deseja excluir?')">
+                  <i class="bi bi-trash"></i> Excluir
+                </a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="5" class="text-center">Nenhuma disponibilidade cadastrada.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

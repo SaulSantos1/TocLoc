@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container my-4">
+    <h1 class="mb-4 text-center text-success">
+      {% if form.instance.id %}Editar Local{% else %}Criar Novo Local{% endif %}
+    </h1>
+
+    <form method="POST" class="bg-light p-4 rounded shadow-sm">
+      {% csrf_token %}
+      
+      <div class="mb-3">
+        {{ form.as_p }}
+      </div>
+
+      <button type="submit" class="btn btn-lg btn-success w-100">
+        {% if form.instance.id %}Atualizar Local{% else %}Criar Local{% endif %}
+      </button>
+    </form>
+
+    <br>
+
+    <div class="d-flex">
+      <a href="{% url 'lista_locais' %}" class="btn btn-outline-secondary btn-lg">
+        Voltar para a lista
+      </a>
+    </div>
+  </div>
+{% endblock %}
