@@ -8,9 +8,8 @@
 
 #### Para ativar o ambiente virtual 
 - venv\Scripts\activate
-  
-#### Para desativar o ambiente virtual 
-- deactivate
+
+>Nota: Toda vez que for iniciar a aplicação, mantenha o venv ativado.
 
 ### Faz a instalação das bibioltecas utilizadas no projeto
  - pip install -r requirements.txt 
@@ -24,3 +23,5 @@
 ### Inicia o servidor de desenvolvimento do Django
 - python manage.py runserver
 
+#### Caso queira desativar o ambiente virtual 
+- deactivate
