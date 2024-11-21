@@ -3,7 +3,7 @@
 ### Crie um Ambiente Virtual para isolar as bibliotecas e dependências do projeto
 
 - python -m venv venv
-- 
+  
 >Nota: Só vai ser necessário rodar esse comando acima na primeira vez, quando a pasta venv já tiver criada, mantenha ativa com o comando abaixo.
 
 #### Para ativar o ambiente virtual 
