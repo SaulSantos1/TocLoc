@@ -1,6 +1,8 @@
 # services/local_service.py
 from .repositories import LocalRepository
 from .models import LocalEsportivo
+from django.shortcuts import get_object_or_404
+from usuarios.models import Usuario
 
 class LocalService:
     @staticmethod
@@ -20,12 +22,24 @@ class LocalService:
 
     @staticmethod
     def editar_local(data, local_id):
-        local = LocalRepository.get_local_by_id(local_id)
-        if local:
-            for key, value in data.items():
-                setattr(local, key, value)
-            LocalRepository.save_local(local)
+        # Obtém o local ou retorna 404 se não encontrado
+        local = get_object_or_404(LocalEsportivo, id=local_id)
+
+        # Atualiza os atributos do local com os dados fornecidos
+        local.nome = data.get('nome', local.nome)
+        local.endereco = data.get('endereco', local.endereco)
+        local.capacidade = data.get('capacidade', local.capacidade)
+
+        anfitriao_username = data.get('anfitriao')
+        if anfitriao_username:
+            anfitriao = get_object_or_404(Usuario, username=anfitriao_username)
+            local.anfitriao = anfitriao
+
+        # Salva as alterações no banco de dados
+        local.save()
+
         return local
+
 
     @staticmethod
     def excluir_local(local_id):

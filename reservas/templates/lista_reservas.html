@@ -2,7 +2,7 @@
 
 {% block content %}
   <div class="container my-4">
-    <h1 class="mb-4 text-center text-success">Lista de Reservas</h1>
+    <h2 class="mb-4 text-center text-success">Lista de Reservas</h2>
 
     <div class="d-flex justify-content-between mb-3">
       <a href="{% url 'criar_reserva' %}" class="btn btn-lg card-sports card-labels">
@@ -24,6 +24,7 @@
         </thead>
         <tbody>
           {% for reserva in reservas %}
+            {% if reserva.usuario == request.user %}
             <tr>
               <td>{{ reserva.local.nome }}</td>
               <td>{{ reserva.usuario }}</td>
@@ -50,6 +51,7 @@
                 </a>
               </td>
             </tr>
+            {% endif %}
           {% empty %}
             <tr>
               <td colspan="6" class="text-center">Nenhuma reserva encontrada.</td>

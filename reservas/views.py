@@ -7,8 +7,6 @@ from .forms import ReservaForm
 @login_required
 def lista_reservas(request):
     reservas = ReservaService.listar_reservas()
-    for reserva in reservas:
-        print(reserva.local)
     return render(request, 'lista_reservas.html', {'reservas': reservas})
 
 @login_required

@@ -27,28 +27,18 @@ def criar_local(request):
 
 @login_required
 def editar_local(request, local_id):
-    # Processa o formulário caso seja um POST
-    if request.method == 'POST':
-        # Obtém o local específico a ser editado
-        local = LocalService.editar_local({}, local_id)
+    # Obtém o local específico a ser editado
+    data = {
+            'nome': request.POST.get('nome'),
+            'endereco': request.POST.get('endereco'),
+            'capacidade': request.POST.get('capacidade'),
+            'anfitriao': request.POST.get('anfitriao'),
+        }
 
-        nome = request.POST.get('nome')
-        endereco = request.POST.get('endereco')
-        capacidade = request.POST.get('capacidade')
-        anfitriao_username = request.POST.get('anfitriao')
-        
-        anfitriao = Usuario.objects.get(username=anfitriao_username)
+        # Chama o serviço para editar o local
+    LocalService.editar_local(data, local_id)
 
-        # Atualizar o local com os dados do formulário
-        local.nome = nome
-        local.endereco = endereco
-        local.capacidade = capacidade
-        local.anfitriao = anfitriao
-
-        # Salvar as alterações
-        local.save()
-
-        return redirect('lista_locais')  # Redireciona para a lista de locais após a edição bem-sucedida
+    return redirect('lista_locais')  # Redireciona para a lista de locais após a edição bem-sucedida
 
 @login_required
 def excluir_local(request, local_id):

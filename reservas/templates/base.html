@@ -25,25 +25,35 @@
               </li>
               {% if request.user.tipo_usuario != 'visitante' %}
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/local">Local</a>
+                <a class="nav-link" aria-current="page" href="/local">Local</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/disponibilidade/disponibilidades/">Disponibilidade</a>
               </li>
               {% endif %}
             </ul>
-            <form class="d-flex" role="search">
+            <form class="d-flex align-items-center" style="gap: 10px;" role="search">
               <!-- Botão de deslogar -->
-              <a href="/logout" class="btn btn-outline-danger logout-button">
-                Deslogar
-              </a>
-              <!-- Botão de deslogar -->
+              <span class="nav-link">Bem-vindo à TocLoc, <strong>{{request.user.username}}</strong></span>
+              {% if request.user.profile_image %}
+              <a href="{% url 'editar_usuario' request.user.id %}"><img src="{{ request.user.profile_image.url }}" alt="Imagem do Perfil"
+                class="rounded-circle" style="width: 40px; height: auto;"></a>
+              {% else %}
+              <a href="{% url 'editar_usuario' request.user.id %}"><img src="/media/padrao/blank-profile-picture-973460_1280.png" alt="Imagem do Perfil"
+                class="rounded-circle" style="width: 40px; height: auto;"></a>
+              {% endif %}
             </form>
           </div>
         </div>
       </nav>
+
       {% block content %}
       {% endblock %}
+
+      <!-- Âncora Circular de Logout -->
+      <a href="/logout/" class="logout-anchor" style="text-decoration: none;" title="Logout">
+        <i class="fa-solid fa-sign-out-alt"></i>
+      </a>
 
       {% block script %}
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>

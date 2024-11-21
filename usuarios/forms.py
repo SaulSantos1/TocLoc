@@ -31,7 +31,16 @@ class CustomUserCreationForm(UserCreationForm):
         label='Digite novamente sua senha'
     )
 
-class CustomUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['username', 'email', 'tipo_usuario']
+        fields = ['username', 'email', 'profile_image']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'profile_image': forms.FileInput(attrs={'class': 'form-control'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].help_text = None

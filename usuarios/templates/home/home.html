@@ -6,8 +6,6 @@
     <h3 class="mb-4" style="color: #15803d;">Bem-vindo à TocLoc, {{user.username}}</h3>
     <h5 class="text-center mb-2" style="color: #15803d;">Selecione uma das opções para seguir</h5>
     <div class="row g-4 mt-4 text-center">
-        
-
         {% if request.user.tipo_usuario != 'visitante' %}
         <!-- Card 2 -->
         <div class="col-md-6">
@@ -48,7 +46,7 @@
         
         <!-- Card 4 -->
         <div class="col-md-6">
-            <a href="" style="text-decoration: none;">
+            <a href="{% url 'editar_usuario' request.user.id %}" style="text-decoration: none;">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body card-sports">
                         <h5 class="card-title card-labels">Perfil do Usuário</h5>

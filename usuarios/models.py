@@ -18,6 +18,7 @@ class Usuario(AbstractUser):
     )
     tipo_usuario = models.CharField(max_length=10, choices=TIPOS, default='visitante')
     email = models.EmailField(unique=True)
+    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
 
     def is_visitante(self):
         return self.tipo_usuario == self.VISITANTE

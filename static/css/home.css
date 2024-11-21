@@ -10,3 +10,24 @@
 .card-labels {
     color: white !important;
 }
+
+.logout-anchor {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #28a745; /* Verde */
+    color: white;
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Garante que fique no topo */
+}
+.logout-anchor:hover {
+    background-color: #218838; /* Verde escuro ao passar o mouse */
+    text-decoration: none;
+}

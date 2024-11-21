@@ -3,7 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.shortcuts import redirect
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm,CustomUserChangeForm
+from django.contrib import messages
+from .services import UsuarioService
 
 def user_login(request):
     if request.method == 'POST':
@@ -28,6 +30,27 @@ def user_cadastro(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'autenticacao/cadastro.html', {'form': form})
+
+@login_required
+def editar_usuario(request, user_id):
+    """View para edição do usuário."""
+    try:
+        usuario = UsuarioService.get_usuario(user_id)
+    except ValueError as e:
+        messages.error(request, str(e))
+        return redirect('erro')
+
+    if request.method == "POST":
+        form = CustomUserChangeForm(request.POST, request.FILES, instance=usuario)
+        print(form)
+        if form.is_valid():
+            UsuarioService.update_usuario(user_id, form.cleaned_data)
+            messages.success(request, "Usuário atualizado com sucesso!")
+            return redirect('home')
+    else:
+        form = CustomUserChangeForm(instance=usuario)
+
+    return render(request, 'editar_usuario.html', {'form': form})
 
 def logout_view(request):
     logout(request)
