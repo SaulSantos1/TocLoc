@@ -1,5 +1,16 @@
 # TocLoc
 
+### Crie um Ambiente Virtual para isolar as bibliotecas e dependências do projeto
+
+- python -m venv venv
+  
+>Nota: Só vai ser necessário rodar esse comando acima na primeira vez, quando a pasta venv já tiver criada, mantenha ativa com o comando abaixo.
+
+#### Para ativar o ambiente virtual 
+- venv\Scripts\activate
+
+>Nota: Toda vez que for iniciar a aplicação, mantenha o venv ativado.
+
 ### Faz a instalação das bibioltecas utilizadas no projeto
  - pip install -r requirements.txt 
 
@@ -12,3 +23,5 @@
 ### Inicia o servidor de desenvolvimento do Django
 - python manage.py runserver
 
+#### Caso queira desativar o ambiente virtual 
+- deactivate
