@@ -6,12 +6,14 @@ from usuarios.models import Usuario
 
 class LocalService:
     @staticmethod
-    def listar_locais(usuario):
-        if usuario.is_anfitriao():
-            return LocalRepository.get_locais_by_anfitriao(usuario)
-        elif usuario.is_usuario() or usuario.is_visitante():
+    def listar_locais(usuario=None):
+        if usuario == None:
             return LocalRepository.get_all_locais()
-        return []
+        else:
+            if usuario.is_anfitriao():
+                return LocalRepository.get_locais_by_anfitriao(usuario)
+            else:
+                return LocalRepository.get_all_locais()
 
     @staticmethod
     def criar_local(data, anfitriao):

@@ -4,14 +4,16 @@
   <div class="container my-4">
     <h2 class="mb-4 text-center text-success">Lista de Disponibilidades</h2>
 
+    {% if request.user.tipo_usuario != 'usuario' %}
     <div class="d-flex justify-content-between mb-3">
       <a href="{% url 'criar_disponibilidade' %}" class="btn btn-lg card-sports card-labels">
         <i class="bi bi-plus-circle"></i> Criar Nova Disponibilidade
       </a>
     </div>
+    {% endif %}
 
     <div class="table-responsive">
-      <table class="table table-striped table-bordered table-hover">
+      <table class="table table-bordered">
         <thead class="table-success">
           <tr>
             <th>Local</th>
@@ -30,14 +32,16 @@
               <td>{{ disponibilidade.horario_fim }}</td>
               <td class="d-flex justify-content-around">
                 <!-- Botão Editar -->
+                 {% if request.user.tipo_usuario != 'usuario' and disponibilidade.local.anfitriao == request.user %}
                 <a href="{% url 'criar_editar_disponibilidade' disponibilidade.id %}" class="btn btn-warning btn-sm">
-                  <i class="bi bi-pencil"></i> Editar
+                  <i class="bi bi-pencil"></i> Editar 
                 </a>
                 <!-- Botão Excluir -->
                 <a href="{% url 'excluir_disponibilidade' disponibilidade.id %}" class="btn btn-danger btn-sm" 
                    onclick="return confirm('Tem certeza que deseja excluir?')">
                   <i class="bi bi-trash"></i> Excluir
                 </a>
+                {% endif %}
               </td>
             </tr>
           {% empty %}

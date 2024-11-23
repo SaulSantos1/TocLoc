@@ -11,7 +11,7 @@
     </div>
 
     <div class="table-responsive">
-      <table class="table table-striped table-bordered">
+      <table class="table table-bordered">
         <thead class="table-success">
           <tr>
             <th>Local</th>
@@ -24,7 +24,6 @@
         </thead>
         <tbody>
           {% for reserva in reservas %}
-            {% if reserva.usuario == request.user %}
             <tr>
               <td>{{ reserva.local.nome }}</td>
               <td>{{ reserva.usuario }}</td>
@@ -33,25 +32,24 @@
               <td>{{ reserva.horario_fim }}</td>
               <td class="d-flex justify-content-around">
                 <!-- Botão de Editar -->
+                {% if reserva.usuario == request.user %}
                 <a href="{% url 'editar_reserva' reserva.id %}" class="btn btn-warning btn-sm">
                   <i class="bi bi-pencil"></i> Editar
                 </a>
-
                 <button class="btn btn-info btn-sm visualizar-mapa" 
                   data-latitude="{{ reserva.local.latitude }}" 
                   data-longitude="{{ reserva.local.longitude }}" 
                   data-nome="{{ reserva.local.nome }}">
                   <i class="bi bi-geo-alt"></i> Mapa
                 </button>
-
                 <!-- Botão de Excluir -->
                 <a href="{% url 'excluir_reserva' reserva.id %}" class="btn btn-danger btn-sm" 
                    onclick="return confirm('Tem certeza que deseja excluir?')">
                   <i class="bi bi-trash"></i> Excluir
                 </a>
+                {% endif %}
               </td>
             </tr>
-            {% endif %}
           {% empty %}
             <tr>
               <td colspan="6" class="text-center">Nenhuma reserva encontrada.</td>

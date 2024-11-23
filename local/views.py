@@ -5,11 +5,11 @@ from .services import LocalService
 from .forms import LocalEsportivoForm
 from usuarios.models import Usuario
 
-@login_required
 def lista_locais(request):
-    locais = LocalService.listar_locais(request.user)
+    print(request.user.is_anonymous)
+    locais = LocalService.listar_locais()
+        # locais = LocalService.listar_locais(request.user)
     anfitriaos = LocalService.listar_anfitriaos()
-    print(anfitriaos)
     return render(request, 'lista_locais.html', {'locais': locais,'anfitriaos':anfitriaos})
 
 @login_required
@@ -48,7 +48,6 @@ def excluir_local(request, local_id):
     LocalService.excluir_local(local_id)
     return redirect('lista_locais')
 
-@login_required
 def visualizar_mapa(request):
     # Obter os parâmetros de latitude, longitude e nome da URL
     latitude = request.GET.get('latitude')

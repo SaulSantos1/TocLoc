@@ -59,3 +59,6 @@ def logout_view(request):
 @login_required
 def home(request):
     return render(request, 'home/home.html',{'user':request.user})
+
+def home_visitante(request):
+    return render(request, 'home/home_visitante.html')

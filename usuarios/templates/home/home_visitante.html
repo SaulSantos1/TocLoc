@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-5">
+    <h3 class="mb-4 text-center" style="color: #15803d; font-weight: bold;">Bem-vindo à TocLoc</h3>
+    <h5 class="text-center mb-4" style="color: #15803d;">Reserve o espaço esportivo perfeito para você!</h5>
+
+    <!-- Hero Section -->
+    <div class="row mb-5">
+        <div class="col-md-6 d-flex align-items-center">
+            <div>
+                <h4 style="color: #15803d;">Descubra os melhores locais esportivos</h4>
+                <p>Na TocLoc, você encontra quadras, campos e ginásios para praticar seu esporte favorito. Seja futebol, vôlei, basquete ou qualquer outra atividade, temos opções para você!</p>
+                <a href="/login/" class="btn btn-success mb-4">Faça Login para Reservar</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="/static/img/football-4698906_1280.jpg" alt="Locais esportivos" class="img-fluid rounded shadow-sm">
+        </div>
+    </div>
+
+    <!-- Locais Disponíveis -->
+    <div class="row g-4 mt-4 justify-content-center text-center">
+        <div class="col-md-6">
+            <a href="/local/" style="text-decoration: none;">
+                <div class="card h-100 shadow-sm">
+                    <img src="/static/img/sunset-5383040_1280.jpg" class="card-img-top" alt="Locais Disponíveis">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #15803d;">Veja a lista de Locais Disponíveis</h5>
+                        <p class="card-text">Explore quadras de futebol, tênis, basquete e muito mais. Encontre o espaço ideal para suas atividades esportivas.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Destaques Esportivos -->
+    <div class="row g-4 mt-5">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="/static/img/football-1396740_1280.jpg" class="card-img-top" alt="Futebol">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #15803d;">Futebol</h5>
+                    <p class="card-text">Reserve campos de futebol com gramados de alta qualidade para você e seus amigos jogarem.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="/static/img/beach-volleyball-6483905_1280.jpg" class="card-img-top" alt="Vôlei">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #15803d;">Vôlei</h5>
+                    <p class="card-text">Encontre quadras de vôlei perfeitas para partidas casuais ou campeonatos.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="/static/img/basketball-6902884_1280.jpg" class="card-img-top" alt="Basquete">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #15803d;">Basquete</h5>
+                    <p class="card-text">Pratique seus arremessos ou jogue com amigos em quadras de basquete de alto padrão.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
