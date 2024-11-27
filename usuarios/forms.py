@@ -41,11 +41,6 @@ class CustomUserChangeForm(forms.ModelForm):
             'profile_image': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
-    profile_image = forms.CharField(
-        widget=forms.FileInput(attrs={'class': 'form-control'}),
-        label='Alterar imagem'
-    )
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].help_text = None
